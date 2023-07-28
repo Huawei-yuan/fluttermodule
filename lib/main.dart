@@ -1,11 +1,26 @@
 
+import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  String initialRoute = ui.window.defaultRouteName;
-  runApp(getRouter(initialRoute));
+  String? initialRoute = ui.window.defaultRouteName;
+  print("initialRoute: $initialRoute");
+  String? routeName = null;
+  String? paramsStr = null;
+  int index = initialRoute?.indexOf('?')??0;
+  if (index > 0) {
+    routeName = initialRoute?.substring(0, index);
+    paramsStr = initialRoute?.substring(index + 1);
+  }
+  print("routeName: $routeName, paramsStr: $paramsStr");
+  if (paramsStr != null) {
+    Map<String, dynamic> paramsMap = json.decode(paramsStr);
+    print("paramsMap: $paramsMap");
+  }
+
+  runApp(getRouter(routeName?? ''));
 }
 
 Widget getRouter(String routeName) {
