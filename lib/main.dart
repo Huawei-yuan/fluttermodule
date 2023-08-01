@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -91,6 +92,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final _channel = const MethodChannel('com.hw.demo.androidandflutterinteractive');
+
+  @override
+  void initState() {
+    _channel.setMethodCallHandler((call) async {
+      String method = call.method;
+      dynamic arguments = call.arguments;
+      print("MethodCallHandler: $method, arguments: $arguments");
+      switch (method) {
+        case 'timer':
+          setState(() {
+            _counter = call.arguments["count"];
+          });
+          if (_counter == 5) {
+            _channel.invokeMethod("sendFinish");
+          }
+          break;
+      }
+    });
+    super.initState();
+  }
 
   void _incrementCounter() {
     setState(() {
