@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
@@ -94,6 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final _channel = const MethodChannel('com.hw.demo.androidandflutterinteractive');
 
+  dynamic _electricity;
+  final _eventChannel = const EventChannel("com.hw.demo.androidandflutterinteractive.eventchannel");
+
+  StreamSubscription? _eventSubscription;
+
+
   @override
   void initState() {
     _channel.setMethodCallHandler((call) async {
@@ -111,7 +118,26 @@ class _MyHomePageState extends State<MyHomePage> {
           break;
       }
     });
+
+    _eventSubscription = _eventChannel
+        .receiveBroadcastStream(["Hello,建立EventChannel链接吧！！！"])
+        .listen(_onData, onError: _onError, onDone: _onDone);
     super.initState();
+  }
+
+  void _onData(event) {
+    print("_onData event = $event");
+    setState(() {
+      _electricity = event;
+    });
+  }
+
+  void _onError(error) {
+    print("_onError error = $error");
+  }
+
+  void _onDone() {
+    print("_onDone _onDone");
   }
 
   void _incrementCounter() {
@@ -123,6 +149,15 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  @override
+  void dispose() {
+    if(_eventSubscription != null) {
+      _eventSubscription?.cancel();
+      _eventSubscription = null;
+    }
+    super.dispose();
   }
 
   @override
@@ -165,6 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+
+            Text(
+              '$_electricity',
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
         ),
