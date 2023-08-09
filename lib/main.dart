@@ -97,8 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   dynamic _electricity;
   final _eventChannel = const EventChannel("com.hw.demo.androidandflutterinteractive.eventchannel");
-
   StreamSubscription? _eventSubscription;
+
+  dynamic _content;
+  final _messageChannel = const BasicMessageChannel("com.hw.demo.androidandflutterinteractive.messagechannel", StringCodec());
 
 
   @override
@@ -122,6 +124,14 @@ class _MyHomePageState extends State<MyHomePage> {
     _eventSubscription = _eventChannel
         .receiveBroadcastStream(["Hello,建立EventChannel链接吧！！！"])
         .listen(_onData, onError: _onError, onDone: _onDone);
+
+    _messageChannel.setMessageHandler((message) => Future<String>(() {
+        print("BasicMessageChannel: $message");
+        setState(() {
+          _content = message;
+        });
+        return "好啊";
+    }));
     super.initState();
   }
 
@@ -204,6 +214,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
             Text(
               '$_electricity',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            Text(
+              '$_content',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
