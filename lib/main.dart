@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttermodule/ObxLogicPage.dart';
 
 import 'GetBuilderPage.dart';
 
@@ -34,7 +35,7 @@ Widget getRouter(String routeName) {
     default:
       return MaterialApp(
         title: 'Flutter GetBuilderPage',
-        home:  GetBuilderPage(),
+        home:  ObxLogicPage()/*GetBuilderPage()*/,
       );
       // return MaterialApp(
       //   home: Scaffold(
