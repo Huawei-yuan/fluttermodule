@@ -5,6 +5,8 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'GetBuilderPage.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   String? initialRoute = ui.window.defaultRouteName;
@@ -31,21 +33,25 @@ Widget getRouter(String routeName) {
       return const MyApp();
     default:
       return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Flutter Demo Home Page'),
-          ),
-          body: const Center(
-            child: Text(
-              "page not found",
-              style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.red
-              ),
-            ),
-          ),
-        )
+        title: 'Flutter GetBuilderPage',
+        home:  GetBuilderPage(),
       );
+      // return MaterialApp(
+      //   home: Scaffold(
+      //     appBar: AppBar(
+      //       title: const Text('Flutter Demo Home Page'),
+      //     ),
+      //     body: const Center(
+      //       child: Text(
+      //         "page not found",
+      //         style: TextStyle(
+      //             fontSize: 24,
+      //             color: Colors.red
+      //         ),
+      //       ),
+      //     ),
+      //   )
+      // );
   }
 }
 
