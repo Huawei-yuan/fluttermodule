@@ -109,16 +109,16 @@ class _TolyCanvasState extends State<TolyCanvas> {
     print("panDown details = $details");
     _lines.add(_positions);
 
-    var x = details.globalPosition.dx;
-    var y = details.globalPosition.dy;
+    var x = details.localPosition.dx;
+    var y = details.localPosition.dy;
     _oldPos = Offset(x, y);
   }
 
   ///移动中，将点添加到点集中
   void _panUpdate(DragUpdateDetails details) {
     print("panUpdate details = $details");
-    var x = details.globalPosition.dx;
-    var y = details.globalPosition.dy;
+    var x = details.localPosition.dx;
+    var y = details.localPosition.dy;
     var curPos = Offset(x, y);
 
     if(_oldPos != null && (curPos - _oldPos!).distance > 3) {
