@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttermodule/customwidgets/MultiShower.dart';
 import 'package:get/get.dart';
 
+import 'customwidgets/handDrawnBoard/HandDrawnBoard.dart';
+
 class GetBuilderLogic extends GetxController {
   var count = 0;
 
@@ -48,7 +50,7 @@ class GetBuilderPage extends StatelessWidget {
               "You tap FAB ${logic.count} times",
               style: const TextStyle(fontSize: 20),
             ),
-            MultiShower(
+            /*MultiShower(
                 decorations,
                 (type) => Text(
                       "张风捷特烈",
@@ -62,7 +64,12 @@ class GetBuilderPage extends StatelessWidget {
               ),
               width: 150,
               color: Colors.red,
-            ),
+            ),*/
+             const SizedBox(
+              width: 600,
+              height: 500,
+              child: TolyCanvas(),
+            )
           ]),
         );
       }),
