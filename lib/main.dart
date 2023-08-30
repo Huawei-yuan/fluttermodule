@@ -35,7 +35,7 @@ Widget getRouter(String routeName) {
     default:
       return MaterialApp(
         title: 'Flutter GetBuilderPage',
-        home:  ObxLogicPage()/*GetBuilderPage()*/,
+        home:  GetBuilderPage() /*ObxLogicPage(), GetBuilderPage()*/,
       );
       // return MaterialApp(
       //   home: Scaffold(
