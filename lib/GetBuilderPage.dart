@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttermodule/customwidgets/MultiShower.dart';
 import 'package:get/get.dart';
 
-import 'customwidgets/handDrawnBoard/HandDrawnBoard.dart';
+import 'customwidgets/HandDrawnBoard.dart';
 
 class GetBuilderLogic extends GetxController {
   var count = 0;
