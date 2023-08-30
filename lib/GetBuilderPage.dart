@@ -3,6 +3,7 @@ import 'package:fluttermodule/customwidgets/MultiShower.dart';
 import 'package:get/get.dart';
 
 import 'customwidgets/HandDrawnBoard.dart';
+import 'customwidgets/RunBall.dart';
 
 class GetBuilderLogic extends GetxController {
   var count = 0;
@@ -66,9 +67,9 @@ class GetBuilderPage extends StatelessWidget {
               color: Colors.red,
             ),*/
              const SizedBox(
-              width: 600,
+              width: 500,
               height: 500,
-              child: TolyCanvas(),
+              child: RunBall(),//TolyCanvas(),
             )
           ]),
         );
