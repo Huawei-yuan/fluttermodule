@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttermodule/ObxLogicPage.dart';
 
 import 'GetBuilderPage.dart';
+import 'customwidgets/TweenAnimPath.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,9 +34,9 @@ Widget getRouter(String routeName) {
     case 'main':
       return const MyApp();
     default:
-      return MaterialApp(
+      return const MaterialApp(
         title: 'Flutter GetBuilderPage',
-        home:  GetBuilderPage() /*ObxLogicPage(), GetBuilderPage()*/,
+        home:  TweenAnimPage() /*GetBuilderPage() ObxLogicPage(), GetBuilderPage()*/,
       );
       // return MaterialApp(
       //   home: Scaffold(
