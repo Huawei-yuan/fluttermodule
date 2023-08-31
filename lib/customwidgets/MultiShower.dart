@@ -34,7 +34,7 @@ class MultiShower extends StatelessWidget {
         Column(
           children: [
             child,
-            Text((infos != null && i < infos!.length) ? infos![i] : list[i].toString().split(".")[1]),
+            Text((infos != null && i < infos!.length) ? infos![i] : ""),
           ],
         )
       );

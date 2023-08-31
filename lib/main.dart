@@ -1,10 +1,11 @@
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttermodule/ObxLogicPage.dart';
+import 'package:fluttermodule/customwidgets/FlutterWidget.dart';
+import 'package:fluttermodule/customwidgets/MultiShower.dart';
 
 import 'GetBuilderPage.dart';
 import 'customwidgets/TweenAnimPath.dart';
@@ -15,7 +16,7 @@ void main() {
   print("initialRoute: $initialRoute");
   String? routeName = null;
   String? paramsStr = null;
-  int index = initialRoute?.indexOf('?')??0;
+  int index = initialRoute?.indexOf('?') ?? 0;
   if (index > 0) {
     routeName = initialRoute?.substring(0, index);
     paramsStr = initialRoute?.substring(index + 1);
@@ -26,7 +27,7 @@ void main() {
     print("paramsMap: $paramsMap");
   }
 
-  runApp(getRouter(routeName?? ''));
+  runApp(getRouter(routeName ?? ''));
 }
 
 Widget getRouter(String routeName) {
@@ -34,26 +35,103 @@ Widget getRouter(String routeName) {
     case 'main':
       return const MyApp();
     default:
-      return const MaterialApp(
+      return MaterialApp(
         title: 'Flutter GetBuilderPage',
-        home:  TweenAnimPage() /*GetBuilderPage() ObxLogicPage(), GetBuilderPage()*/,
+        home: Scaffold(
+            appBar: AppBar(title: const Text('Flutter Widget Animation')),
+            body: Column(
+              children: [
+                MultiShower(
+                  const [
+                    AnimConfig(1000, 10, RockMode.random),
+                    AnimConfig(1000, 10, RockMode.up_down),
+                    AnimConfig(1000, 10, RockMode.left_right),
+                    AnimConfig(1000, 10, RockMode.lean)
+                  ],
+                      (config) => FlutterWidget(
+                    animConfig: config,
+                    child: ClipOval(
+                        child: Image.network(
+                          "https://img0.baidu.com/it/u=3310909096,3638950111&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=200",
+                          fit: BoxFit.cover,
+                          width: 50,
+                          height: 50,
+                        )),
+                  ),
+                  infos: ["random", "up_down", "left_right", "lean"],
+                  width: 60,
+                  height: 60,
+                ),
+
+
+                MultiShower(
+                  [
+                      CurveTween(curve: Curves.bounceIn),
+                      CurveTween(curve: Curves.bounceInOut),
+                      CurveTween(curve: Curves.bounceOut),
+                      CurveTween(curve: Curves.decelerate),
+                      CurveTween(curve: Curves.ease),
+                      CurveTween(curve: Curves.easeIn),
+                      // CurveTween(curve: Curves.easeInBack),
+                      // CurveTween(curve: Curves.easeInCirc),
+                      // CurveTween(curve: Curves.easeInCubic),
+                      // CurveTween(curve: Curves.easeInExpo),
+                      // CurveTween(curve: Curves.easeInOut),
+                      // CurveTween(curve: Curves.easeInOutBack),
+                      // CurveTween(curve: Curves.easeOut),
+                      // CurveTween(curve: Curves.easeOutBack),
+                      // CurveTween(curve: Curves.linear),
+                      // CurveTween(curve: Curves.linearToEaseOut),
+                  ],
+                      (curve) => FlutterWidget(
+                    animConfig: AnimConfig(1000, 30, RockMode.lean, curveTween: curve),
+                    child: ClipOval(
+                        child: Image.network(
+                          "https://img0.baidu.com/it/u=3310909096,3638950111&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=200",
+                          fit: BoxFit.cover,
+                          width: 50,
+                          height: 50,
+                        )),
+                  ),
+                  infos: const ["bounceIn","bounceInOut","bounceOut","decelerate",
+                    "ease","easeIn"/*,"easeInBack","easeInCirc","easeInCubic",
+                    "easeInExpo","easeInOut","easeInOutBack",
+                    "easeOut","easeOutBack","linear","linearToEaseOut"*/],
+                  width: 60,
+                  height: 60,
+                ),
+
+              ],
+            )) /* FlutterWidget(
+            animConfig: const AnimConfig(2000, 15, RockMode.up_down),
+            child: ClipOval(
+              child: Image.network(
+                "https://img0.baidu.com/it/u=3310909096,3638950111&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=200",
+                fit: BoxFit.cover,
+                width: 150,
+                height: 150,
+              ),
+            ),
+          ),
+        ) TweenAnimPage() GetBuilderPage() ObxLogicPage(), GetBuilderPage()*/
+        ,
       );
-      // return MaterialApp(
-      //   home: Scaffold(
-      //     appBar: AppBar(
-      //       title: const Text('Flutter Demo Home Page'),
-      //     ),
-      //     body: const Center(
-      //       child: Text(
-      //         "page not found",
-      //         style: TextStyle(
-      //             fontSize: 24,
-      //             color: Colors.red
-      //         ),
-      //       ),
-      //     ),
-      //   )
-      // );
+    // return MaterialApp(
+    //   home: Scaffold(
+    //     appBar: AppBar(
+    //       title: const Text('Flutter Demo Home Page'),
+    //     ),
+    //     body: const Center(
+    //       child: Text(
+    //         "page not found",
+    //         style: TextStyle(
+    //             fontSize: 24,
+    //             color: Colors.red
+    //         ),
+    //       ),
+    //     ),
+    //   )
+    // );
   }
 }
 
@@ -101,15 +179,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final _channel = const MethodChannel('com.hw.demo.androidandflutterinteractive');
+  final _channel =
+      const MethodChannel('com.hw.demo.androidandflutterinteractive');
 
   dynamic _electricity;
-  final _eventChannel = const EventChannel("com.hw.demo.androidandflutterinteractive.eventchannel");
+  final _eventChannel = const EventChannel(
+      "com.hw.demo.androidandflutterinteractive.eventchannel");
   StreamSubscription? _eventSubscription;
 
   dynamic _content;
-  final _messageChannel = const BasicMessageChannel("com.hw.demo.androidandflutterinteractive.messagechannel", StringCodec());
-
+  final _messageChannel = const BasicMessageChannel(
+      "com.hw.demo.androidandflutterinteractive.messagechannel", StringCodec());
 
   @override
   void initState() {
@@ -130,16 +210,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     _eventSubscription = _eventChannel
-        .receiveBroadcastStream(["Hello,建立EventChannel链接吧！！！"])
-        .listen(_onData, onError: _onError, onDone: _onDone);
+        .receiveBroadcastStream(["Hello,建立EventChannel链接吧！！！"]).listen(_onData,
+            onError: _onError, onDone: _onDone);
 
     _messageChannel.setMessageHandler((message) => Future<String>(() {
-        print("BasicMessageChannel: $message");
-        setState(() {
-          _content = message;
-        });
-        return "好啊";
-    }));
+          print("BasicMessageChannel: $message");
+          setState(() {
+            _content = message;
+          });
+          return "好啊";
+        }));
     super.initState();
   }
 
@@ -171,7 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    if(_eventSubscription != null) {
+    if (_eventSubscription != null) {
       _eventSubscription?.cancel();
       _eventSubscription = null;
     }
@@ -219,7 +299,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-
             Text(
               '$_electricity',
               style: Theme.of(context).textTheme.headlineLarge,
