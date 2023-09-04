@@ -8,6 +8,7 @@ import 'package:fluttermodule/customwidgets/FlutterWidget.dart';
 import 'package:fluttermodule/customwidgets/MultiShower.dart';
 
 import 'GetBuilderPage.dart';
+import 'customwidgets/TextSlider.dart';
 import 'customwidgets/TweenAnimPath.dart';
 
 void main() {
@@ -100,7 +101,7 @@ Widget getRouter(String routeName) {
                   width: 60,
                   height: 60,
                 ),
-
+                TextSider()
               ],
             )) /* FlutterWidget(
             animConfig: const AnimConfig(2000, 15, RockMode.up_down),
