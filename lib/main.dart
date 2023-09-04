@@ -8,6 +8,7 @@ import 'package:fluttermodule/customwidgets/FlutterWidget.dart';
 import 'package:fluttermodule/customwidgets/MultiShower.dart';
 
 import 'GetBuilderPage.dart';
+import 'customwidgets/ItemChart.dart';
 import 'customwidgets/TextSlider.dart';
 import 'customwidgets/TweenAnimPath.dart';
 
@@ -101,7 +102,18 @@ Widget getRouter(String routeName) {
                   width: 60,
                   height: 60,
                 ),
-                TextSider()
+                TextSider(),
+                ItemChart(chartBean: ChartBean(
+                    image: "https://img0.baidu.com/it/u=3310909096,3638950111&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=200",
+                  name: "张风捷特烈",
+                  sentence: "我就是我, 是不一样的烟火",
+                  time: "2小时前",
+                  shield: false
+                ),
+                  onTap: (bean) {
+                    print("onTap: $bean");
+                  },
+                )
               ],
             )) /* FlutterWidget(
             animConfig: const AnimConfig(2000, 15, RockMode.up_down),
