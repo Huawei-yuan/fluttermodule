@@ -11,6 +11,7 @@ import 'GetBuilderPage.dart';
 import 'customwidgets/ItemChart.dart';
 import 'customwidgets/TextSlider.dart';
 import 'customwidgets/TweenAnimPath.dart';
+import 'customwidgets/UserPanel.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -113,6 +114,20 @@ Widget getRouter(String routeName) {
                   onTap: (bean) {
                     print("onTap: $bean");
                   },
+                ),
+
+                UserPanel(
+                  userInfo: UserInfo(
+                    name: "张风捷特烈",
+                    level: 16,
+                    image: "https://img0.baidu.com/it/u=3310909096,3638950111&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=200",
+                    post: "前端工程师",
+                    company: "腾讯",
+                    proverbs: "我就是我, 是不一样的烟火",
+                  ),
+                  editCallback: () {
+                    print("On Edit click");
+                  }
                 )
               ],
             )) /* FlutterWidget(
