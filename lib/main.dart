@@ -12,6 +12,7 @@ import 'customwidgets/ItemChart.dart';
 import 'customwidgets/TextSlider.dart';
 import 'customwidgets/TweenAnimPath.dart';
 import 'customwidgets/UserPanel.dart';
+import 'http/TestHttp.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,9 @@ void main() {
   }
 
   runApp(getRouter(routeName ?? ''));
+
+  // testHttp();
+  // testDio();
 }
 
 Widget getRouter(String routeName) {
