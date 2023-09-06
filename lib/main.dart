@@ -14,6 +14,8 @@ import 'customwidgets/TextSlider.dart';
 import 'customwidgets/TweenAnimPath.dart';
 import 'customwidgets/UserPanel.dart';
 import 'http/TestHttp.dart';
+import 'redux/ReduxExample.dart';
+import 'package:redux/redux.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +34,7 @@ void main() {
     print("paramsMap: $paramsMap");
   }
 
-  runApp(getRouter(routeName ?? ''));
+  runApp(getRouter(routeName ?? 'reduxMain'));
 
   // testHttp();
   // testDio();
@@ -42,6 +44,11 @@ Widget getRouter(String routeName) {
   switch (routeName) {
     case 'main':
       return const MyApp();
+    case 'reduxMain':
+      return FlutterReduxApp(
+        store: Store<int>(countReducer, initialState: 0),
+        title: "Flutter Redux Demo",
+      );
     default:
       return MaterialApp(
         title: 'Flutter GetBuilderPage',
