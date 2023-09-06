@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttermodule/ObxLogicPage.dart';
 import 'package:fluttermodule/customwidgets/FlutterWidget.dart';
 import 'package:fluttermodule/customwidgets/MultiShower.dart';
+import 'package:fluttermodule/customwidgets/TodoList.dart';
 
 import 'GetBuilderPage.dart';
 import 'customwidgets/ItemChart.dart';
@@ -46,7 +47,7 @@ Widget getRouter(String routeName) {
         title: 'Flutter GetBuilderPage',
         home: Scaffold(
             appBar: AppBar(title: const Text('Flutter Widget Animation')),
-            body: Column(
+            body: TodoList()/*Column(
               children: [
                 MultiShower(
                   const [
@@ -134,7 +135,7 @@ Widget getRouter(String routeName) {
                   }
                 )
               ],
-            )) /* FlutterWidget(
+            )*/) /* FlutterWidget(
             animConfig: const AnimConfig(2000, 15, RockMode.up_down),
             child: ClipOval(
               child: Image.network(
