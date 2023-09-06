@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+import 'SecondReduxPage.dart';
+
 enum Actions {
   increament, //加
   decreament //减
@@ -42,6 +44,9 @@ class FlutterReduxApp extends StatelessWidget {
       store: store,
       child: MaterialApp(
         title: title,
+        routes: {
+          '/secondReduxPage': (context) => SecondReduxPage(),
+        },
         home: Scaffold(
           appBar: AppBar(
             title: Text(title),
@@ -64,13 +69,18 @@ class FlutterReduxApp extends StatelessWidget {
                 // the Widget will be automatically rebuilt with the latest
                 // count. No need to manually manage subscriptions or Streams!
                 StoreConnector<int, String>(
-                    builder: (builder, count) =>
-                        Text(
+                    builder: (builder, count) => Text(
                           'The button has been pushed this many times: $count',
                           style: const TextStyle(fontSize: 20),
                         ),
-                    converter: (store) => store.state.toString()
-                ),
+                    converter: (store) => store.state.toString()),
+                Builder(builder: (builderContext) {
+                  return ElevatedButton(
+                    onPressed: () =>
+                        Navigator.of(builderContext).pushNamed('/secondReduxPage'),
+                    child: const Text("跳转到SecondReduxPage"),
+                  );
+                })
               ],
             ),
           ),
@@ -82,7 +92,8 @@ class FlutterReduxApp extends StatelessWidget {
           floatingActionButton: StoreConnector<int, VoidCallback>(
             converter: (store) {
               return () {
-                print("floatingActionButton converter store.state = ${store.state}");
+                print(
+                    "floatingActionButton converter store.state = ${store.state}");
                 if (store.state >= 10) {
                   store.dispatch(Actions.decreament);
                 } else {
@@ -91,7 +102,7 @@ class FlutterReduxApp extends StatelessWidget {
               };
             },
             builder: (context, callback) => FloatingActionButton(
-                onPressed: callback,
+              onPressed: callback,
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             ),
@@ -100,5 +111,4 @@ class FlutterReduxApp extends StatelessWidget {
       ),
     );
   }
-
 }
