@@ -140,6 +140,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
+  logger:
+    dependency: "direct dev"
+    description:
+      name: logger
+      sha256: ba3bc83117b2b49bdd723c0ea7848e8285a0fbc597ba09203b20d329d020c24a
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.2"
   matcher:
     dependency: transitive
     description:
@@ -180,6 +188,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.0.0"
+  redux_thunk:
+    dependency: "direct dev"
+    description:
+      name: redux_thunk
+      sha256: ae7c41b1401f59440d6709741979a06b6e29cf7a2b00ec239149727340a35403
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.0"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermodule/customwidgets/MultiShower.dart';
 import 'package:get/get.dart';
-
-import 'customwidgets/HandDrawnBoard.dart';
-import 'customwidgets/RunBall.dart';
+import 'package:fluttermodule/customwidgets/HandDrawnBoard.dart';
+import 'package:fluttermodule/customwidgets/RunBall.dart';
 
 class GetBuilderLogic extends GetxController {
   var count = 0;

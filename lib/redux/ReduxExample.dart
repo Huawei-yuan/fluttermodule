@@ -76,8 +76,8 @@ class FlutterReduxApp extends StatelessWidget {
                     converter: (store) => store.state.toString()),
                 Builder(builder: (builderContext) {
                   return ElevatedButton(
-                    onPressed: () =>
-                        Navigator.of(builderContext).pushNamed('/secondReduxPage'),
+                    onPressed: () => Navigator.of(builderContext)
+                        .pushNamed('/secondReduxPage'),
                     child: const Text("跳转到SecondReduxPage"),
                   );
                 })
