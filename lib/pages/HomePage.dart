@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttermodule/customwidgets/AbilityWidget.dart';
 
 //主页面
 class HomePage extends StatelessWidget {
@@ -9,13 +10,8 @@ class HomePage extends StatelessWidget {
         title: const Text('Flutter Demo Home Page'),
       ),
       body: const Center(
-        child: Text(
-          "Home Page",
-          style: TextStyle(
-            fontSize: 24,
-          ),
-        ),
-      ),
+        child: AbilityWidget(),
+      )
     );
   }
 }
