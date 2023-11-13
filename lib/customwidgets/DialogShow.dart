@@ -358,7 +358,7 @@ _showCupertinoTimerPicker(BuildContext context) {
       loger.d("onTimerDurationChanged duration= $duration");
     },);
 
-  showCupertinoModalPopup(context: context, bu ilder: (context) {
+  showCupertinoModalPopup(context: context, builder: (context) {
     return SizedBox(
       height: 200,
       child: picker,
