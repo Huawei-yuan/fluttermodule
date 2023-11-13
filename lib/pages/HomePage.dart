@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttermodule/customwidgets/AbilityWidget.dart';
 
+import '../customwidgets/DialogShow.dart';
+
 //主页面
 class HomePage extends StatelessWidget {
   @override
@@ -10,7 +12,7 @@ class HomePage extends StatelessWidget {
         title: const Text('Flutter Demo Home Page'),
       ),
       body: const Center(
-        child: AbilityWidget(),
+        child: DialogShow()//AbilityWidget(),
       )
     );
   }
