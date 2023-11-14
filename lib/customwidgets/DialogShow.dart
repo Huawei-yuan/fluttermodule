@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttermodule/Loger/AppLoger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttermodule/util/DialogUtil.dart';
 
 /// 一个各种对话框展示组件
 class DialogShow extends StatefulWidget {
@@ -76,119 +77,127 @@ _showSimpleDialog(BuildContext context) {
     "云深不知处禁止魏无羡入内,不可吹笛"
   ];
 
-  showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          title: title,
-          children: strs
-              .map((e) => SimpleDialogOption(
-                    onPressed: () {
-                      loger.d("on $e Click");
-                      Navigator.of(context).pop();
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(Icons.turned_in_outlined),
-                        Expanded(child: Text(e))
-                      ],
-                    ),
-                  ))
-              .toList(),
-        );
-      });
+  DialogUtil.showSimpleDialog(context: context, title: "SimpleDialog SimpleDialog", options: strs, onOptionSelected: (index) {
+    loger.d("showSimpleDialog on $index Click");
+  });
+
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return SimpleDialog(
+  //         title: title,
+  //         children: strs
+  //             .map((e) => SimpleDialogOption(
+  //                   onPressed: () {
+  //                     loger.d("on $e Click");
+  //                     Navigator.of(context).pop();
+  //                   },
+  //                   child: Row(
+  //                     children: [
+  //                       const Icon(Icons.turned_in_outlined),
+  //                       Expanded(child: Text(e))
+  //                     ],
+  //                   ),
+  //                 ))
+  //             .toList(),
+  //       );
+  //     });
 }
 
 _showAlertDialog(BuildContext context) {
   loger.d("_showAlertDialog context= $context");
-  final title = Row(children: [
-    Image.asset(
-      "assets/images/default_head.png",
-      width: 30,
-      height: 30,
-    ),
-    const SizedBox(width: 10),
-    const Text("SimpleDialog"),
-  ]);
+  // final title = Row(children: [
+  //   Image.asset(
+  //     "assets/images/default_head.png",
+  //     width: 30,
+  //     height: 30,
+  //   ),
+  //   const SizedBox(width: 10),
+  //   const Text("SimpleDialog"),
+  // ]);
+  //
+  // var content = Row(
+  //   //内容
+  //   children: <Widget>[
+  //     Text("我💖你，你是我的"),
+  //     SvgPicture.asset(
+  //       "assets/svg/icon_lipstick.svg",
+  //       width: 30,
+  //       height: 30,
+  //     )
+  //   ],
+  // );
 
-  var content = Row(
-    //内容
-    children: <Widget>[
-      Text("我💖你，你是我的"),
-      SvgPicture.asset(
-        "assets/svg/icon_lipstick.svg",
-        width: 30,
-        height: 30,
-      )
-    ],
-  );
+  DialogUtil.showAlertDialog(context: context, title: "AlertDialog AlertDialog AlertDialog", content: "我💖你，你是我的");
 
-  showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-            title: title,
-            content: content,
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    loger.d("on 不要闹 Click");
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("不要闹")),
-              ElevatedButton(
-                  onPressed: () {
-                    loger.d("on 走开 Click");
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("走开"))
-            ],
-          ));
+  // showDialog(
+  //     context: context,
+  //     builder: (context) => AlertDialog(
+  //           title: title,
+  //           content: content,
+  //           actions: [
+  //             ElevatedButton(
+  //                 onPressed: () {
+  //                   loger.d("on 不要闹 Click");
+  //                   Navigator.of(context).pop();
+  //                 },
+  //                 child: const Text("不要闹")),
+  //             ElevatedButton(
+  //                 onPressed: () {
+  //                   loger.d("on 走开 Click");
+  //                   Navigator.of(context).pop();
+  //                 },
+  //                 child: const Text("走开"))
+  //           ],
+  //         ));
 }
 
 _showCupertinoAlertDialog(BuildContext context) {
   loger.d("_showCupertinoAlertDialog context= $context");
-  final title = Row(children: [
-    Image.asset(
-      "assets/images/default_head.png",
-      width: 30,
-      height: 30,
-    ),
-    const SizedBox(width: 10),
-    const Text("SimpleDialog"),
-  ]);
+  DialogUtil.showCupertinoAlertDialog(context: context, title: "CupertinoAlertDialog", content: "我💖你，你是我的");
 
-  var content = Row(
-    //内容
-    children: <Widget>[
-      Text("我💖你，你是我的"),
-      SvgPicture.asset(
-        "assets/svg/icon_lipstick.svg",
-        width: 30,
-        height: 30,
-      )
-    ],
-  );
-
-  showDialog(
-      context: context,
-      builder: (context) => CupertinoAlertDialog(
-            title: title,
-            content: content,
-            actions: [
-              CupertinoButton(
-                  onPressed: () {
-                    loger.d("on 不要闹 Click");
-                    Navigator.pop(context);
-                  },
-                  child: const Text("不要闹")),
-              CupertinoButton(
-                  onPressed: () {
-                    loger.d("on 走开 Click");
-                    Navigator.pop(context);
-                  },
-                  child: const Text("走开"))
-            ],
-          ));
+  // final title = Row(children: [
+  //   Image.asset(
+  //     "assets/images/default_head.png",
+  //     width: 30,
+  //     height: 30,
+  //   ),
+  //   const SizedBox(width: 10),
+  //   const Text("SimpleDialog"),
+  // ]);
+  //
+  // var content = Row(
+  //   //内容
+  //   children: <Widget>[
+  //     Text("我💖你，你是我的"),
+  //     SvgPicture.asset(
+  //       "assets/svg/icon_lipstick.svg",
+  //       width: 30,
+  //       height: 30,
+  //     )
+  //   ],
+  // );
+  //
+  // showDialog(
+  //     context: context,
+  //     builder: (context) => CupertinoAlertDialog(
+  //           title: title,
+  //           content: content,
+  //           actions: [
+  //             CupertinoButton(
+  //                 onPressed: () {
+  //                   loger.d("on 不要闹 Click");
+  //                   Navigator.pop(context);
+  //                 },
+  //                 child: const Text("不要闹")),
+  //             CupertinoButton(
+  //                 onPressed: () {
+  //                   loger.d("on 走开 Click");
+  //                   Navigator.pop(context);
+  //                 },
+  //                 child: const Text("走开"))
+  //           ],
+  //         ));
 }
 
 _showWidgetDialog(BuildContext context) {
@@ -247,7 +256,8 @@ _showStatefulWidgetDialog(BuildContext context) {
     ));
   });
 
-  showDialog(context: context, builder: (ctx) => statefulBuilder);
+  DialogUtil.showStatefulWidgetDialog(context: context, statefulBuilder: statefulBuilder);
+  // showDialog(context: context, builder: (ctx) => statefulBuilder);
 }
 
 _showScaffold(BuildContext context) {
